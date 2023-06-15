@@ -2,7 +2,7 @@
 .local
 .svn
 .vsc
-# .vscode
+.vscode
 **.pyc
 *.log
 logs
