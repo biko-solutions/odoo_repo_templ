@@ -1,0 +1,20 @@
+name: Pre-commit
+
+on:
+    pull_request:
+        types:
+            - opened
+            - edited
+            - reopened
+            - synchronize
+        branches:
+            - master
+            - main
+            - dev
+
+jobs:
+    pre-commit:
+        # permissions:
+        #     id-token: write # need this for OIDC
+        #     contents: read
+        uses: BorovlevAS/ci_cd_workflows/.github/workflows/precommit.yml@main
