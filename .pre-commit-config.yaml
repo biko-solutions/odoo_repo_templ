@@ -7,7 +7,7 @@ exclude: |
     # We don't want to mess with tool-generated files
     .svg$|/tests/([^/]+/)?cassettes/|^.copier-answers.yml$|^.github/|
     # Maybe reactivate this when all README files include prettier ignore tags?
-    ^README\.md$|README\.MD$|
+    ^README\.md$|
     # Library files can have extraneous formatting (even minimized)
     /static/(src/)?lib/|
     # Repos using Sphinx to generate docs don't need prettying
@@ -40,7 +40,7 @@ repos:
                 - --remove-duplicate-keys
                 - --remove-unused-variables
     - repo: https://github.com/psf/black
-      rev: 23.11.0
+      rev: 23.12.0
       hooks:
           - id: black
     - repo: https://github.com/pre-commit/mirrors-prettier
@@ -55,7 +55,7 @@ repos:
                 - --plugin=@prettier/plugin-xml
             files: \.(css|htm|html|js|json|jsx|less|md|scss|toml|ts|xml|yaml|yml)$
     - repo: https://github.com/pre-commit/mirrors-eslint
-      rev: v8.54.0
+      rev: v8.55.0
       hooks:
           - id: eslint
             verbose: true
@@ -68,7 +68,7 @@ repos:
           - id: pyupgrade
             args: ["--keep-percent-format"]
     - repo: https://github.com/PyCQA/isort
-      rev: 5.12.0
+      rev: 5.13.1
       hooks:
           - id: isort
             name: isort except __init__.py
@@ -124,14 +124,14 @@ repos:
                 - --exit-zero
             verbose: true
             additional_dependencies:
-                - isort==5.12.0
+                - isort==5.13.1
           - id: pylint_odoo
             args:
                 - --rcfile=.pylintrc-mandatory
             additional_dependencies:
-                - isort==5.12.0
+                - isort==5.13.1
     - repo: https://github.com/PyCQA/bandit
-      rev: 1.7.5
+      rev: 1.7.6
       hooks:
           - id: bandit
     - repo: https://github.com/OCA/odoo-pre-commit-hooks
@@ -140,3 +140,13 @@ repos:
           #      - id: oca-checks-odoo-module
           - id: oca-checks-po
             args: ["--fix"]
+#  - repo: https://github.com/acsone/setuptools-odoo
+#    rev: 3.2.0
+#    hooks:
+#      - id: setuptools-odoo-make-default
+#      - id: setuptools-odoo-get-requirements
+#        args:
+#          - --output
+#          - requirements.txt
+#          - --header
+#          - "# generated from manifests external_dependencies"
