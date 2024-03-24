@@ -1,0 +1,168 @@
+{
+    "folders": [
+        {
+            "name": "Main folder",
+            "path": "...."
+        },
+        // Here you can add your additional folders with names
+        // {
+        //     "path": "...."
+        // },
+        // {
+        //     "path": "...."
+        // }
+    ],
+    "settings": {
+        "[python]": {
+            "editor.formatOnSave": true,
+            "editor.formatOnType": false,
+            "editor.tabSize": 4,
+            "editor.codeActionsOnSave": {
+                "source.organizeImports": "explicit"
+            }
+        },
+        "python.languageServer": "Pylance",
+        "python.analysis.userFileIndexingLimit": -1,
+        // set your project's directories here
+        "python.analysis.extraPaths": [
+            "<main odoo dir>",
+            "<main odoo dir>/odoo",
+            "<main odoo dir>/odoo/addons",
+            "<main odoo dir>/extra_addons/<submodule1>"
+        ],
+        "black-formatter.args": [
+            "--line-length",
+            "88"
+        ],
+        "flake8.args": [
+            "--config=<full path to>.flake8"
+        ],
+        "pylint.args": [
+            "--rcfile=<full path to>.pylintrc"
+        ],
+        "pylint.ignorePatterns": [
+            "**/**/__manifest__.py"
+        ],
+        // Comment this line, if you use prettier-xml plugin
+        "prettier.configPath": "<full path to>/.prettierrc.yml",
+        "prettier.enableDebugLogs": true,
+        // ========== PRETTIER XML-PLUGIN SETTING =================
+        // uncomment this section if you can install @prettier/plugin-xml
+        // "prettier.configPath": "<full path to>/.prettierrc_xml.yml",
+        // "prettier.prettierPath": "/usr/local/lib/node_modules/prettier",
+        // "prettier.resolveGlobalModules": true,
+        // "prettier.documentSelectors": [
+        // 	"**/*.xml"
+        // ],
+    },
+    "launch": {
+        "version": "0.2.0",
+        "configurations": [
+            {
+                "name": "Python: DEV database",
+                "type": "python",
+                "request": "launch",
+                "program": "<path to odoo-bin>/odoo-bin",
+                "args": [
+                    "-c",
+                    "<path to config>/odoo-server-dev.conf",
+                ],
+                "cwd": "<path to odoo-bin>",
+                "env": {
+                    "PYTHONUNBUFFERED": "1"
+                },
+                "console": "integratedTerminal"
+            },
+            {
+                "name": "Update DEV database",
+                "type": "python",
+                "request": "launch",
+                "program": "<path to odoo-bin>/odoo-bin",
+                "args": [
+                    "-c",
+                    "<path to config>/odoo-server-dev.conf",
+                    "-d",
+                    "<DEV DB name>",
+                    "-u",
+                    "base",
+                    "--stop-after-init"
+                ],
+                "cwd": "<path to odoo-bin>",
+                "env": {
+                    "PYTHONUNBUFFERED": "1"
+                },
+                "console": "integratedTerminal"
+            },
+            {
+                "name": "Python: STAGE database",
+                "type": "python",
+                "request": "launch",
+                "program": "<path to odoo-bin>/odoo-bin",
+                "args": [
+                    "-c",
+                    "<path to config>/odoo-server-stage.conf"
+                ],
+                "cwd": "<path to odoo-bin>",
+                "env": {
+                    "PYTHONUNBUFFERED": "1"
+                },
+                "console": "integratedTerminal"
+            },
+            {
+                "name": "Update STAGE database",
+                "type": "python",
+                "request": "launch",
+                "program": "<path to odoo-bin>/odoo-bin",
+                "args": [
+                    "-c",
+                    "<path to config>/odoo-server-stage.conf",
+                    "-d",
+                    "<STAGE DB name>",
+                    "-u",
+                    "base",
+                    "--stop-after-init"
+                ],
+                "cwd": "<path to odoo-bin>",
+                "env": {
+                    "PYTHONUNBUFFERED": "1"
+                },
+                "console": "integratedTerminal"
+            },
+            {
+                "name": "Python: MAIN database",
+                "type": "python",
+                "request": "launch",
+                "program": "<path to odoo-bin>/odoo-bin",
+                "args": [
+                    "-c",
+                    "<path to config>/odoo-server-main.conf",
+                ],
+                "cwd": "<path to odoo-bin>",
+                "env": {
+                    "PYTHONUNBUFFERED": "1"
+                },
+                "console": "integratedTerminal"
+            },
+            {
+                "name": "Update MAIN database",
+                "type": "python",
+                "request": "launch",
+                "program": "<path to odoo-bin>/odoo-bin",
+                "args": [
+                    "-c",
+                    "<path to config>/odoo-server-main.conf",
+                    "-d",
+                    "<MAIN DB name>",
+                    "-u",
+                    "base",
+                    "--stop-after-init"
+                ],
+                "cwd": "<path to odoo-bin>",
+                "env": {
+                    "PYTHONUNBUFFERED": "1"
+                },
+                "console": "integratedTerminal"
+            }
+        ]
+    }
+}
