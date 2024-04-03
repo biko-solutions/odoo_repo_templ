@@ -1,8 +1,9 @@
 name: Create variables and secrets
 on: create
-
 jobs:
     test-job:
+        env:
+            GH_TOKEN: ${{ github.token }}
         runs-on: ubuntu-latest
         steps:
             - name: Create variables and secrets
@@ -13,6 +14,7 @@ jobs:
                   echo "action_repository: ${{ github.action_repository }}"
                   echo "actor: ${{ github.actor }}"
                   echo "base_ref: ${{ github.base_ref }}"
+                  echo "TOKEN" ${{github.token}}
                   echo "==== EVENT ===="
                   echo "description: ${{ github.event.description }}"
                   echo "enterprise: ${{ github.event.enterprise }}"
