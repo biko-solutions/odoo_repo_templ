@@ -5,7 +5,6 @@ on:
 
 jobs:
     test-job:
-        # if: ${{ github.event.master_branch }} == ${{ github.event.ref }}
         permissions:
             actions: write
         runs-on: ubuntu-latests
