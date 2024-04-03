@@ -1,0 +1,26 @@
+name: Setup repository
+on:
+    create:
+    workflow_dispatch:
+jobs:
+    setup-repository:
+        runs-on: ubuntu-latest
+        steps:
+            - name: show data
+              run: |
+                  echo "master_branch:" ${{ github.event.master_branch }}
+                  echo "ref:" ${{ github.ref }}
+                  echo "event_name:" ${{ github.event_name }}
+                  echo "default_branch:" ${{ github.event.repository.default_branch }}
+            - name: Checkout
+              uses: actions/checkout@v4.1.1
+            - name: Create variables
+              env:
+                  GH_TOKEN: ${{ secrets.CICD_TOKEN }}
+              run: |
+                  gh variable set -f .deploy_vars.env
+            - name: Create secrets
+              env:
+                  GH_TOKEN: ${{ secrets.CICD_TOKEN }}
+              run: |
+                  gh secret set -f .deploy_secrets.env
