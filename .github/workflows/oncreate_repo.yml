@@ -7,8 +7,8 @@ jobs:
         # if: ${{ github.event.master_branch }} == ${{ github.event.ref }}
         runs-on: ubuntu-latest
         steps:
-            # - name: Checkout ✅
-            #   uses: actions/checkout@v4.1.1
+            - name: Checkout ✅
+              uses: actions/checkout@v4.1.1
             - name: Create variables and secrets
               run: |
                   echo "==== GITHUB ===="
