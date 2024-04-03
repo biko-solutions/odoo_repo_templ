@@ -27,7 +27,7 @@ while IFS= read -r line || [[ -n "$line" ]]; do
     # Remove potential spaces in key and value
     key=$(echo $key | xargs)
     value=$(echo $value | xargs)
-    
+
     # Execute the gh variable set command
     if gh secret set "$key" --body "$value"; then
         echo "Secret $key added successfully."

@@ -19,4 +19,4 @@ jobs:
               continue-on-error: true
               env:
                   GH_TOKEN: ${{ secrets.CICD_TOKEN }}
-              run: ./scripts/set_secrets.sh ./scripts/set_secrets.sh
+              run: ./scripts/set_secrets.sh ./scripts/.deploy_secrets.env
