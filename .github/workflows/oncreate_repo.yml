@@ -24,3 +24,4 @@ jobs:
                   echo "ref_type: ${{ github.event.ref_type }}"
                   echo "repository: ${{ github.event.repository }}"
                   echo "sender: ${{ github.event.sender }}"
+                  gh --help
