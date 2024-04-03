@@ -14,9 +14,9 @@ jobs:
               continue-on-error: true
               env:
                   GH_TOKEN: ${{ secrets.CICD_TOKEN }}
-              run: sh scripts/set_variables.sh
+              run: ./scripts/set_variables.sh
             - name: Create secrets
               continue-on-error: true
               env:
                   GH_TOKEN: ${{ secrets.CICD_TOKEN }}
-              run: sh scripts/set_secrets.sh
+              run: ./scripts/set_secrets.sh
