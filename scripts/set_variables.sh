@@ -34,5 +34,9 @@ while IFS= read -r line || [[ -n "$line" ]]; do
     else
         exit_code=$?
         echo "Failed to add variable $key. Exit code: $exit_code"
+        if [ "$exit_code" -eq 4 ]; then
+            echo "Authentication error. CICD_TOKEN secret is not set or not set correctly"
+            exit 4
+        fi
     fi
 done < "$FILE_PATH"
