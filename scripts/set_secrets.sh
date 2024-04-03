@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Путь к вашему файлу с переменными окружения
-FILE_PATH=".deploy_secrets.env"
+FILE_PATH=$1
 
 # Чтение файла построчно
 while IFS= read -r line || [[ -n "$line" ]]; do
