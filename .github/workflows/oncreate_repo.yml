@@ -22,6 +22,5 @@ jobs:
                   echo "pusher_type: ${{ github.event.pusher_type }}"
                   echo "ref: ${{ github.event.ref }}"
                   echo "ref_type: ${{ github.event.ref_type }}"
-                  echo "repository: ${{ github.event.repository }}"
                   echo "sender: ${{ github.event.sender }}"
-                  gh --help
+                  gh workflow list --all
