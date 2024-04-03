@@ -1,11 +1,14 @@
 name: Create variables and secrets
-on: create
+on:
+    create:
+    workflow_dispatch:
+
 jobs:
     test-job:
-        env:
-            GH_TOKEN: ${{ github.token }}
         runs-on: ubuntu-latest
         steps:
+            - name: Checkout ✅
+              uses: actions/checkout@v4.1.1
             - name: Create variables and secrets
               run: |
                   echo "==== GITHUB ===="
@@ -14,7 +17,7 @@ jobs:
                   echo "action_repository: ${{ github.action_repository }}"
                   echo "actor: ${{ github.actor }}"
                   echo "base_ref: ${{ github.base_ref }}"
-                  echo "TOKEN" ${{github.token}}
+                  echo "TOKEN" ${{secrets.GITHUB_TOKEN}}
                   echo "==== EVENT ===="
                   echo "description: ${{ github.event.description }}"
                   echo "enterprise: ${{ github.event.enterprise }}"
@@ -25,4 +28,9 @@ jobs:
                   echo "ref: ${{ github.event.ref }}"
                   echo "ref_type: ${{ github.event.ref_type }}"
                   echo "sender: ${{ github.event.sender }}"
+            - name: Disable workflow
+              env:
+                  GH_TOKEN: ${{ github.token }}
+              run: |
+                  echo "${{ github.workflow }}"
                   gh workflow list --all
