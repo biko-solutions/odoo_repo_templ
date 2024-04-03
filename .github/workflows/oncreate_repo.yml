@@ -1,17 +1,14 @@
 name: Create variables and secrets
 on:
     create:
-    workflow_dispatch:
 
 jobs:
     test-job:
         # if: ${{ github.event.master_branch }} == ${{ github.event.ref }}
-        # permissions:
-        #     actions: write
         runs-on: ubuntu-latest
         steps:
-            - name: Checkout ✅
-              uses: actions/checkout@v4.1.1
+            # - name: Checkout ✅
+            #   uses: actions/checkout@v4.1.1
             - name: Create variables and secrets
               run: |
                   echo "==== GITHUB ===="
