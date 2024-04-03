@@ -5,8 +5,8 @@ on:
 
 jobs:
     test-job:
-        permissions:
-            actions: write
+        # permissions:
+        #     actions: write
         runs-on: ubuntu-latests
         steps:
             - name: Checkout ✅
