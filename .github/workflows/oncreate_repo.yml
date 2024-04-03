@@ -1,0 +1,13 @@
+name: Create variables and secrets
+on: create
+
+jobs:
+    test-job:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Create variables and secrets
+              run: |
+                  echo "event: ${{ github.event }}"
+                  echo "description: ${{ github }}"
+                  echo "env: ${{ env }}"
+                  echo "vars: ${{ vars }}"
