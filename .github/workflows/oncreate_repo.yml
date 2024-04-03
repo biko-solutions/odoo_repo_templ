@@ -5,9 +5,10 @@ on:
 
 jobs:
     test-job:
-        # permissions:
-        #     actions: write
-        runs-on: ubuntu-latests
+        # if: ${{ github.event.master_branch }} == ${{ github.event.ref }}
+        permissions:
+            actions: write
+        runs-on: ubuntu-latest
         steps:
             - name: Checkout ✅
               uses: actions/checkout@v4.1.1
