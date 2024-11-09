@@ -5,29 +5,38 @@ on:
             update_simbioz:
                 description: "Update SIMBIOZ sources"
                 default: false
-                required: true
+                required: false
                 type: boolean
             base_update:
                 description: "Full update (BASE module)"
                 default: false
                 required: false
                 type: boolean
+            exclusive_update:
+                description: "Turn off database during update"
+                required: false
+                type: boolean
+                default: false
+            ODOO_DB:
+                required: false
+                type: string
 
 jobs:
     DEPLOY:
-        uses: BorovlevAS/ci_cd_workflows/.github/workflows/manual_prod_deploy.yml@main
-        with:
-            update_simbioz: ${{ inputs.update_simbioz }}
-            base_update: ${{ inputs.base_update }}
-            SERVER_ADDR: ${{vars.PROD_SERV_ADDR}}
-            SERVER_USER: ${{vars.PROD_SERV_USER}}
-            SERVER_PORT: ${{vars.PROD_SERV_PORT}}
-            MAIN_PATH: ${{vars.PROD_MAIN_PATH}}
-            CUSTOM_PATH: ${{vars.PROD_CUSTOM_PATH}}
-            ODOO_SERVICE: ${{vars.PROD_ODOO_SERVICE}}
-            ODOO_USER: ${{vars.PROD_ODOO_USER}}
-            ODOO_URI: ${{vars.PROD_ODOO_ADDR}}
-            ODOO_DB: ${{vars.PROD_DB_NAME}}
-        secrets:
-            SSH_KEY: ${{secrets.PROD_SSH_KEY}}
-            ODOO_PASSWORD: ${{secrets.PROD_ODOO_ADMIN_PWD}}
+        # It is recommended to use a self-hosted runner for production deployments
+        # Replace THIS with your runner or runner group
+        runs-on: <clinet-self-hosted-runner>
+        steps:
+            - name: Deploy
+              uses: biko-solutions/cicd_workflows/.github/actions/self-hosted-run/simbioz-struct/deploy@main
+              with:
+                  base_update: ${{ inputs.base_update }}
+                  update_simbioz: ${{ inputs.update_simbioz }}
+                  exclusive_update: ${{ inputs.exclusive_update }}
+                  MAIN_PATH: ${{vars.PROD_MAIN_PATH}}
+                  CUSTOM_PATH: ${{vars.PROD_CUSTOM_PATH}}
+                  ODOO_SERVICE: ${{vars.PROD_ODOO_SERVICE}}
+                  SERVER_USER: ${{vars.PROD_SERV_USER}}
+                  USE_VENV: "false"
+                  ODOO_DB: ${{inputs.ODOO_DB}}
+                  CICD_TOKEN: ${{secrets.CICD_TOKEN}}

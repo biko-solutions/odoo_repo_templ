@@ -14,7 +14,4 @@ on:
 
 jobs:
     pre-commit:
-        # permissions:
-        #     id-token: write # need this for OIDC
-        #     contents: read
-        uses: BorovlevAS/ci_cd_workflows/.github/workflows/precommit.yml@main
+        uses: biko-solutions/cicd_workflows/.github/workflows/precommit.yml@main
