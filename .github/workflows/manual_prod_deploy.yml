@@ -17,9 +17,18 @@ on:
                 required: false
                 type: boolean
                 default: false
+            show_log:
+                description: "Show detailed log during update"
+                required: false
+                type: boolean
+                default: false
             ODOO_DB:
                 required: false
                 type: string
+
+concurrency:
+    group: ci-prod-${{ github.ref }}
+    cancel-in-progress: false
 
 jobs:
     DEPLOY:
@@ -33,6 +42,7 @@ jobs:
                   base_update: ${{ inputs.base_update }}
                   update_simbioz: ${{ inputs.update_simbioz }}
                   exclusive_update: ${{ inputs.exclusive_update }}
+                  show_log: ${{ inputs.show_log }}
                   MAIN_PATH: ${{vars.PROD_MAIN_PATH}}
                   CUSTOM_PATH: ${{vars.PROD_CUSTOM_PATH}}
                   ODOO_SERVICE: ${{vars.PROD_ODOO_SERVICE}}
